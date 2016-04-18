@@ -1,7 +1,8 @@
 bin/
 obj/
 temp/
-library/
+Debug/
+Library/
 *.user
 *.suo
 *.[Cc]ache
