@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour {
     Animator m_ani;
 
     // 寻路组件
-    NavMeshAgent m_agent;
-
+   // NavMeshAgent m_agent;
+   A_alogrithm m_agent;
     // 主角
     Player m_player;
 
@@ -35,12 +35,11 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        m_agent = this.transform.FindChild("A_alogrithm").GetComponent<A_alogrithm>();
         // 获取组件
         m_transform = this.transform;
         m_ani = this.GetComponent<Animator>();
-        m_agent = GetComponent<NavMeshAgent>();
-
+       // m_agent = GetComponent<NavMeshAgent>();
         // 获得主角
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
@@ -116,7 +115,7 @@ public class Enemy : MonoBehaviour {
             m_timer -= Time.deltaTime;
             if (m_timer < 0)
             {
-                m_agent.SetDestination(m_player.m_transform.position);
+               // m_agent.SetDestination(m_player.m_transform.position);
 
                 m_timer = 1;
             }
@@ -188,7 +187,7 @@ public class Enemy : MonoBehaviour {
     void MoveTo()
     {
         float speed = m_movSpeed * Time.deltaTime;
-        m_agent.Move(m_transform.TransformDirection((new Vector3(0, 0, speed))));
+        m_agent.Move(speed);
 
     }
 
