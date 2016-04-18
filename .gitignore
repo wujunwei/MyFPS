@@ -1,6 +1,7 @@
-bin/
-obj/
-library/
+/bin
+/obj
+/temp
+/library
 *.user
 *.suo
 *.[Cc]ache
