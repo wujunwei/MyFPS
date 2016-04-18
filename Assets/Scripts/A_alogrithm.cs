@@ -12,7 +12,7 @@ public class A_alogrithm : MonoBehaviour {
     }
     public void Move(float speed)
     {
-        if (enemy != null && is_wolking && destination != null)
+        if (enemy != null && is_wolking)
         {
 
         }
