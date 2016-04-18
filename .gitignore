@@ -3,6 +3,9 @@ obj/
 temp/
 Debug/
 Library/
+ShaderCache/
+ScriptAssembiles/
+metadata/
 *.user
 *.suo
 *.[Cc]ache
