@@ -48,7 +48,7 @@ public class HttpTool {
         }
         else
         {
-            m_info = "10";
+            m_info = "0";
         }
         
     }

@@ -38,11 +38,14 @@ public class GameManager : MonoBehaviour {
         txt_life = this.transform.FindChild("txt_life").GetComponent<GUIText>();
         txt_score = this.transform.FindChild("txt_score").GetComponent<GUIText>();
         HttpTool ht = new HttpTool();
-        ht.IGetData();
+        StartCoroutine(ht.IGetData());
         if (int.TryParse(ht.GetInfo(), out m_hiscore) == false)
         {
-            Debug.Log(ht.GetInfo());
             m_hiscore = 0;
+        }
+        else
+        {
+            m_hiscore = System.Int32.Parse(ht.GetInfo());
         }
         txt_hiscore.text = "High Score " + m_hiscore;
 	}
@@ -71,7 +74,7 @@ public class GameManager : MonoBehaviour {
             if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.75f,300,40),"Try again"))
             {
                 HttpTool ht = new HttpTool();
-                ht.ISetData(m_score);
+                StartCoroutine(ht.ISetData(m_score));
                 Application.LoadLevel(Application.loadedLevelName);
             }
         }
