@@ -50,7 +50,7 @@ public class HttpTool {
         {
             m_info = "0";
         }
-        
+		Time.timeScale = 1;
     }
     public string GetInfo()
     {

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     // 弹药数量
     public int m_ammo = 100;
 
+	HttpTool ht = new HttpTool();
     // 游戏主角
     Player m_player;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour {
     GUIText txt_hiscore;
     GUIText txt_life;
     GUIText txt_score;
+
 
 	// Use this for initialization
 	void Start () {
@@ -37,21 +39,18 @@ public class GameManager : MonoBehaviour {
         txt_hiscore = this.transform.FindChild("txt_hiscore").GetComponent<GUIText>();
         txt_life = this.transform.FindChild("txt_life").GetComponent<GUIText>();
         txt_score = this.transform.FindChild("txt_score").GetComponent<GUIText>();
-        HttpTool ht = new HttpTool();
-        StartCoroutine(ht.IGetData());
-        if (int.TryParse(ht.GetInfo(), out m_hiscore) == false)
-        {
-            m_hiscore = 0;
-        }
-        else
-        {
-            m_hiscore = System.Int32.Parse(ht.GetInfo());
-        }
-        txt_hiscore.text = "High Score " + m_hiscore;
+		Time.timeScale = 0;
+		StartCoroutine(ht.IGetData());
+
 	}
 
     void Update()
     {
+		if (int.TryParse(ht.GetInfo(), out m_hiscore) == true&&Time.timeScale == 1)
+		{
+			m_hiscore = System.Int32.Parse(ht.GetInfo());
+		}
+		txt_hiscore.text = "High Score " + m_hiscore;
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
     }
@@ -70,11 +69,17 @@ public class GameManager : MonoBehaviour {
             GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "Game Over");
 
             // 显示重新游戏按钮
-             GUI.skin.label.fontSize = 30;
+			GUI.skin.label.fontSize = 30; 
+
+			if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.75f,300,40),"Submit score!"))
+			{
+
+				HttpTool ht = new HttpTool();
+				StartCoroutine(ht.ISetData(m_score));
+			}
             if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.75f,300,40),"Try again"))
             {
-                HttpTool ht = new HttpTool();
-                StartCoroutine(ht.ISetData(m_score));
+               
                 Application.LoadLevel(Application.loadedLevelName);
             }
         }
