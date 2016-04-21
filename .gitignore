@@ -8,3 +8,4 @@ Temp/
 *.unityproj
 *.DS_Store
 *.suo
+Assets/StreamingAssets/map.txt.meta

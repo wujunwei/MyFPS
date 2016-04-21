@@ -23,14 +23,13 @@ public class A_alogrithm : MonoBehaviour {
             string line;
             while ((line = sr.ReadLine()) != null)
             {
-                //Debug.Log(line.ToString());
+                for(int i=-48; i<48;i++)
+                {
+                    string[] sArray = line.Split(' ');
+                }
 
             }
-            for(int i=-48; i<48;i++)
-            {
-                
-                
-            }
+            
             map.Add(j, temp);
         }
         

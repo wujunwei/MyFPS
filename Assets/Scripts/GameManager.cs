@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [AddComponentMenu("Game/GameManager")]
 public class GameManager : MonoBehaviour {
@@ -78,8 +79,8 @@ public class GameManager : MonoBehaviour {
 			}
             if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.75f,300,40),"Try again"))
             {
-               
-                Application.LoadLevel(Application.loadedLevelName);
+
+                SceneManager.LoadScene("demo");
             }
         }
     }
