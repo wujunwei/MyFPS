@@ -71,9 +71,8 @@ public class GameManager : MonoBehaviour {
             // 显示重新游戏按钮
 			GUI.skin.label.fontSize = 30; 
 
-			if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.75f,300,40),"Submit score!"))
+			if ( GUI.Button( new Rect( Screen.width*0.5f-150,Screen.height*0.6f,300,40),"Submit score!"))
 			{
-
 				HttpTool ht = new HttpTool();
 				StartCoroutine(ht.ISetData(m_score));
 			}
