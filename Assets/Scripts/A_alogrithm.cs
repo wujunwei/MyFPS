@@ -25,16 +25,18 @@ public class A_alogrithm : MonoBehaviour {
 
 	void InitMap() {
         //读取地图文件
-            map = FileTool.Instance.GetMap();
+        map = FileTool.Instance.GetMap();
     }
 
     public void Move(float speed) {
         if (enemy != null && is_wolking)
         {
             var aim = FindPath(start, end, true);
+            OpenList.Clear();
+            CloseList.Clear();
             if(aim == null)
             {
-                FileTool.Instance.WriteDebugFile(start.X + " " + start.Y, "log.txt");
+                //FileTool.Instance.WriteDebugFile(start.X + " " + start.Y, "log.txt");
             }
             else
             {
@@ -53,7 +55,11 @@ public class A_alogrithm : MonoBehaviour {
 
 	// Update is called once per frame
     void Update() {
-        start = new Point(Convert.ToInt32(enemy.position.z), Convert.ToInt32(enemy.position.x));
+        if(is_wolking)
+        {
+            start = new Point(Convert.ToInt32(enemy.position.z), Convert.ToInt32(enemy.position.x));
+        }
+        
     }
 
     public Point FindPath(Point start, Point end, bool IsIgnoreCorner)
