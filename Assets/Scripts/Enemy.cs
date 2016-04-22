@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour {
             m_timer -= Time.deltaTime;
             if (m_timer < 0)
             {
-               // m_agent.SetDestination(m_player.m_transform.position);
+                m_agent.SetDestination(m_player.m_transform.position);
 
                 m_timer = 1;
             }
