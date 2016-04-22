@@ -17,7 +17,7 @@ public class A_alogrithm : MonoBehaviour {
         is_wolking = true;
         enemy = this.transform.parent;
         start = new Point(Convert.ToInt32(enemy.position.z), Convert.ToInt32(enemy.position.x));
-        FileTool.Instance.WriteDebugFile("Z:" + start.X+"x:" + start.Y +"\n", "start.txt" );
+        //FileTool.Instance.WriteDebugFile("Z:" + start.X+"x:" + start.Y +"\n", "start.txt" );
         InitMap();
         OpenList = new List<Point>(96 * 84);//长*宽
         CloseList = new List<Point>(96 * 84);//长*宽
@@ -40,7 +40,7 @@ public class A_alogrithm : MonoBehaviour {
             }
             else
             {
-                Debug.Log(start.X+" "+start.Y);
+                //Debug.Log(start.X+" "+start.Y);
             }
             
         }
