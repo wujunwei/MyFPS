@@ -11,7 +11,7 @@ public class EnemySpawn : MonoBehaviour
     public int m_enemyCount = 0;
 
     // 敌人的最大生成数量
-    public int m_maxEnemy = 3;
+    public int m_maxEnemy = 0;
 
     // 生成敌人的时间间隔
     public float m_timer = 0;

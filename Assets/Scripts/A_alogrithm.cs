@@ -7,6 +7,7 @@ public class A_alogrithm : MonoBehaviour {
     private bool is_wolking;
     Point start = null;
     Point end = null;
+    Stack<Point> Path;
     public const int OBLIQUE = 14;
     public const int STEP = 10;
 	private Dictionary<int,Dictionary<int,int>> map = new Dictionary<int,Dictionary<int,int>>();
@@ -21,6 +22,7 @@ public class A_alogrithm : MonoBehaviour {
         InitMap();
         OpenList = new List<Point>(96 * 84);//长*宽
         CloseList = new List<Point>(96 * 84);//长*宽
+        Path = new Stack<Point>();
     }
 
 	void InitMap() {
@@ -31,23 +33,29 @@ public class A_alogrithm : MonoBehaviour {
     public void Move(float speed) {
         if (enemy != null && is_wolking)
         {
-            var aim = FindPath(start, end, true);
-            OpenList.Clear();
-            CloseList.Clear();
-            if(aim == null)
+
+            if (Path.Count > 0)
             {
-                //FileTool.Instance.WriteDebugFile(start.X + " " + start.Y, "log.txt");
-            }
-            else
-            {
-                //Debug.Log(start.X+" "+start.Y);
-            }
+                Point next = Path.Pop();
+                enemy.position = new Vector3 (next.Y,0,next.X);
+            }                                                                                                                           
             
         }
     }
 
    public void SetDestination(Vector3 play_position) {
-        end = new Point(Convert.ToInt32(play_position.z), Convert.ToInt32(play_position.x));
+       if (end == null || Vector3.Distance(new Vector3(end.Y,play_position.y,end.X), play_position) > 1.50f)
+       {
+           end = new Point(Convert.ToInt32(play_position.z), Convert.ToInt32(play_position.x));
+           Path.Clear();
+           FindPath(start, end, true);
+           
+       }
+       else
+       {
+           return;
+       }
+        
     }
     public void ResetPath() {
         is_wolking = false;
@@ -62,7 +70,7 @@ public class A_alogrithm : MonoBehaviour {
         
     }
 
-    public Point FindPath(Point start, Point end, bool IsIgnoreCorner)
+    private void FindPath(Point start, Point end, bool IsIgnoreCorner)
     {
         OpenList.Add(start);
         while (OpenList.Count != 0)
@@ -83,9 +91,20 @@ public class A_alogrithm : MonoBehaviour {
                     NotFoundPoint(tempStart, end, point);
             }
             if (OpenList.Get(end) != null)
-                return OpenList.Get(end);
+            {
+                break;
+            }
+               
         }
-        return OpenList.Get(end);
+        var temp = OpenList.Get(end);
+        while (temp != null)
+        {
+            Path.Push(temp);
+            temp = temp.ParentPoint;
+        }
+        OpenList.Clear();
+        CloseList.Clear();
+       
     }
 
     private void FoundPoint(Point tempStart, Point point)

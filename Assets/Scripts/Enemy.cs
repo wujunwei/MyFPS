@@ -116,12 +116,12 @@ public class Enemy : MonoBehaviour {
             if (m_timer < 0)
             {
                 m_agent.SetDestination(m_player.m_transform.position);
-
+                // 追向主角
+                
                 m_timer = 1;
             }
  
-            // 追向主角
-            MoveTo();
+            
 
             // 如果距离主角小于1.5米，向主角攻击
             if (Vector3.Distance(m_transform.position, m_player. m_transform.position) <= 1.5f)
@@ -132,6 +132,8 @@ public class Enemy : MonoBehaviour {
                 m_ani.SetBool("attack", true);
             }
         }
+
+        MoveTo();
 
         // 如果处于攻击状态
         if (stateInfo.nameHash == Animator.StringToHash("Base Layer.attack") && !m_ani.IsInTransition(0))

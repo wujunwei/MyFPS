@@ -15,7 +15,7 @@ public class FileTool : MonoBehaviour {
     public void GetMapTool()
     {
         map = new Dictionary<int,Dictionary<int,int>>();
-        StreamReader sr = new StreamReader("./Assets/StreamingAssets/map.txt", Encoding.Default);
+        StreamReader sr = new StreamReader(Application.streamingAssetsPath+"/map.txt", Encoding.Default);
         string line;
         int j = -42;
         while ((line = sr.ReadLine()) != null)
@@ -32,16 +32,16 @@ public class FileTool : MonoBehaviour {
             map.Add(j, temp);
             j++;
         }
-        string log = "";
-        foreach (var pair in map)
-        {
-            foreach (var p in pair.Value)
-            {
-                log = log + "" + pair.Key + " " + p.Key + " " + p.Value + "\n";
-            }
+        //string log = "";
+        //foreach (var pair in map)
+        //{
+        //    foreach (var p in pair.Value)
+        //    {
+        //        log = log + "" + pair.Key + " " + p.Key + " " + p.Value + "\n";
+        //    }
 
-        }
-        this.WriteDebugFile(log,"map.log");
+        //}
+        //this.WriteDebugFile(log,"map.log");
         sr.Close();
         
     }
