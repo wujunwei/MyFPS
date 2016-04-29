@@ -51,7 +51,6 @@ public class FileTool : MonoBehaviour {
         filename = "./log/"+filename;
         FileStream fs = null;
         //将待写的入数据从字符串转换为字节数组  
-        Encoding encoder = Encoding.UTF8;
         try
         {
             fs = File.OpenWrite(filename);
