@@ -9,3 +9,4 @@ Temp/
 *.DS_Store
 *.suo
 Assets/StreamingAssets/map.txt.meta
+ProjectSettings/GraphicsSettings.asset

@@ -29,15 +29,22 @@ public class A_alogrithm : MonoBehaviour {
         //读取地图文件
         map = FileTool.Instance.GetMap();
     }
-
+    /// <summary>
+    /// 移动函数
+    /// </summary>
+    /// <param name="speed"></param>
     public void Move(float speed) {
         if (enemy != null && is_wolking)
         {
 
             if (Path.Count > 0)
             {
-                Point next = Path.Pop();
-                enemy.position = new Vector3 (next.Y,0,next.X);
+                Point next = Path.Peek();
+                enemy.position = Vector3.Lerp(enemy.position, new Vector3(next.Y,0,next.X), Time.deltaTime*5);
+                if(Vector3.Distance(new Vector3(next.Y, 0, next.X),enemy.position) < 0.3f)
+                {
+                    Path.Pop();
+                }
             }                                                                                                                           
             
         }
