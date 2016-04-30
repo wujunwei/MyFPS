@@ -10,3 +10,4 @@ Temp/
 *.suo
 Assets/StreamingAssets/map.txt.meta
 ProjectSettings/GraphicsSettings.asset
+ProjectSettings/
