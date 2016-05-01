@@ -43,7 +43,9 @@ public class A_alogrithm : MonoBehaviour {
                 enemy.position = Vector3.Lerp(enemy.position, new Vector3(next.Y,0,next.X), Time.deltaTime*5);
                 if(Vector3.Distance(new Vector3(next.Y, 0, next.X),enemy.position) < 0.3f)
                 {
-                    Path.Pop();
+                    next = Path.Pop();
+                    enemy.LookAt(new Vector3(next.Y, 0, next.X));
+                    
                 }
             }                                                                                                                           
             
@@ -51,6 +53,7 @@ public class A_alogrithm : MonoBehaviour {
     }
 
    public void SetDestination(Vector3 play_position) {
+       is_wolking = true;
        if (end == null || Vector3.Distance(new Vector3(end.Y,play_position.y,end.X), play_position) > 1.50f)
        {
            end = new Point(Convert.ToInt32(play_position.z), Convert.ToInt32(play_position.x));
