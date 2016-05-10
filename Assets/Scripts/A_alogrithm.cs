@@ -41,7 +41,7 @@ public class A_alogrithm : MonoBehaviour {
             {
                 Point next = Path.Peek();
                 enemy.position = Vector3.Lerp(enemy.position, new Vector3(next.Y,0,next.X), Time.deltaTime*5);
-                if(Vector3.Distance(new Vector3(next.Y, 0, next.X),enemy.position) < 0.3f)
+                if(Vector3.Distance(new Vector3(next.Y, 0, next.X),enemy.position) < 1.0f)
                 {
                     next = Path.Pop();
                     enemy.LookAt(new Vector3(next.Y, 0, next.X));
