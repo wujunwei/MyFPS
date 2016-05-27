@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class HttpTool {
+public class HttpTool
+{
 
     private string m_info = "0";
 
     public IEnumerator ISetData(string info)
     {
-        WWW www = new WWW("http://121.42.170.120/game_fps.php?opreation=save&score=" + info);
+        WWW www = new WWW("http://121.42.170.120/game_fps.php?opreation=set&score=" + info + "&key=" + this.MD5Encrypt("set"));
 
         yield return www;
 
@@ -20,7 +20,7 @@ public class HttpTool {
     }
     public IEnumerator ISetData(int info)
     {
-        WWW www = new WWW("http://121.42.170.120/game_fps.php?operation=set&score=" + info);
+        WWW www = new WWW("http://121.42.170.120/game_fps.php?operation=set&score=" + info+"&key="+this.MD5Encrypt("set"));
 
         yield return www;
 
@@ -33,7 +33,7 @@ public class HttpTool {
     }
     public IEnumerator IGetData()
     {
-        WWW www = new WWW("http://121.42.170.120/game_fps.php?operation=get");
+        WWW www = new WWW("http://121.42.170.120/game_fps.php?operation=get" + "&key=" + this.MD5Encrypt("get"));
 
         yield return www;
 
@@ -60,4 +60,14 @@ public class HttpTool {
 	{
 		m_info = info;
 	}
+    public  string MD5Encrypt(string strText)
+    {
+         System.Security.Cryptography.MD5CryptoServiceProvider md5CSP = new System.Security.Cryptography.MD5CryptoServiceProvider();
+         byte[] testEncrypt = System.Text.Encoding.Unicode.GetBytes(strText);
+         byte[] resultEncrypt = md5CSP.ComputeHash(testEncrypt);
+         string testResult = System.Text.Encoding.Unicode.GetString(resultEncrypt);
+         string ans = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(strText, "MD5");
+         return ans;
+    }
+ 
 }

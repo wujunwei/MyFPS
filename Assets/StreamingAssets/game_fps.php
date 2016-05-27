@@ -43,17 +43,22 @@ class IpTool
     }
 
 }
+
+
 $iptool = new IpTool();
 $operation = isset($_GET['operation'])?$_GET['operation']:"";
 $addr = $iptool->getIP();
+if(md5($addr)!=$_GET['key'])
+{
+	die("the key is not correct");
+}
 
 if($operation === "set")
 {
     $mysqli = new mysqli('localhost','root','a4d89f2ced','FPS');
     if (mysqli_connect_errno())
     {
-	//注意mysqli_connect_error()新特性
-	die('Unable to connect!'). mysqli_connect_error();
+		die('Unable to connect!'). mysqli_connect_error();
     } 
     //  var_dump($mysqli);
     $score = $_GET['score'];

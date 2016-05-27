@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
         txt_score = this.transform.FindChild("txt_score").GetComponent<GUIText>();
         if (Application.internetReachability != NetworkReachability.NotReachable) 
         {
+            Debug.Log(ht.MD5Encrypt("get"));
             Time.timeScale = 0;
             StartCoroutine(ht.IGetData());
         }
@@ -48,8 +49,6 @@ public class GameManager : MonoBehaviour {
         {
             ht.SetInfo("0");
         }
-		
-
 	}
 
     void Update()
