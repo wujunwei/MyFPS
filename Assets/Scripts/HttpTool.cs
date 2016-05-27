@@ -56,4 +56,8 @@ public class HttpTool {
     {
         return m_info;
     }
+	public void SetInfo(string info)
+	{
+		m_info = info;
+	}
 }

@@ -39,17 +39,25 @@ public class GameManager : MonoBehaviour {
         txt_hiscore = this.transform.FindChild("txt_hiscore").GetComponent<GUIText>();
         txt_life = this.transform.FindChild("txt_life").GetComponent<GUIText>();
         txt_score = this.transform.FindChild("txt_score").GetComponent<GUIText>();
-		Time.timeScale = 0;
-		StartCoroutine(ht.IGetData());
+        if (Application.internetReachability != NetworkReachability.NotReachable) 
+        {
+            Time.timeScale = 0;
+            StartCoroutine(ht.IGetData());
+        }
+        else
+        {
+            ht.SetInfo("0");
+        }
+		
 
 	}
 
     void Update()
     {
-		if (int.TryParse(ht.GetInfo(), out m_hiscore) == true&&Time.timeScale == 1)
-		{
-			m_hiscore = System.Int32.Parse(ht.GetInfo());
-		}
+        //if (int.TryParse(ht.GetInfo(), out m_hiscore) == true&&Time.timeScale == 1)
+        //{
+        //    m_hiscore = System.Int32.Parse(ht.GetInfo());
+        //}
 		txt_hiscore.text = "High Score " + m_hiscore;
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
