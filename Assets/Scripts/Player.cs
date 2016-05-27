@@ -8,13 +8,10 @@ public class Player : MonoBehaviour {
     public Transform m_transform;
     CharacterController m_ch;
 
-
     // 角色移动速度
     float m_movSpeed = 3.0f;
 
-    // 重力
     float m_gravity = 2.0f;
-
 
     // 摄像机
     Transform m_camTransform;
