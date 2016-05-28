@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
     Player m_player;
 
     // 角色移动速度
-    float m_movSpeed = 0.5f;
+    float m_movSpeed = 1.75f;
 
     // 角色旋转速度
     float m_rotSpeed = 120;
@@ -58,11 +58,10 @@ public class Enemy : MonoBehaviour {
     {
         //更新敌人数量
         m_spawn.m_enemyCount--;
-
         // 加100分
         GameManager.Instance.SetScore(100);
-
-        // 销毁
+        m_player.kills++;
+        GameManager.Instance.Setkills(m_player.kills);
         Destroy(this.gameObject);
     }
 	
@@ -121,8 +120,6 @@ public class Enemy : MonoBehaviour {
                 m_timer = 1;
             }
  
-            
-
             // 如果距离主角小于1.5米，向主角攻击
             if (Vector3.Distance(m_transform.position, m_player. m_transform.position) <= 1.5f)
             {

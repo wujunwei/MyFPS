@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 
     // 生命值
     public int m_life = 5;
-
+    public int kills = 0;
     //枪口transform
     Transform m_muzzlepoint;
 
