@@ -130,7 +130,9 @@ public class GameManager : MonoBehaviour {
         }
         if (GUI.Button(new Rect(130, 300, 300, 40), "share your score"))
         {
-         
+            string content = "I have beaten " + m_score.ToString() + " zombie in this game --FPS ,come on and join me!!";
+            Application.OpenURL("http://service.weibo.com/share/share.php?&title=" + content +
+                "&pic=http://img1.mydrivers.com/img/20140514/302f7d3dd33a424da6806986ac7d7b35.jpg&url=http://121.42.170.120/FPS.rar");
             //在按钮按下时调用：
             show_message.color = Color.red;
             show_message.text = "share successfully !";
